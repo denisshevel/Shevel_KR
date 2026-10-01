@@ -1,0 +1,2025 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Центр безопасности — УБИ.172
+    </title>
+
+    <style>
+
+        /* =========================================================
+           ОСНОВНЫЕ НАСТРОЙКИ
+           ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            color: #172033;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .page {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* =========================================================
+           БОКОВАЯ ПАНЕЛЬ
+           ========================================================= */
+
+        .sidebar {
+            width: 220px;
+            min-height: 100vh;
+            padding: 22px 15px;
+            background: #111827;
+            color: #ffffff;
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            background: #2563eb;
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .brand {
+            margin: 13px 7px 27px;
+        }
+
+        .brand-title {
+            margin: 0;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .brand-subtitle {
+            margin: 4px 0 0;
+            color: #94a3b8;
+            font-size: 9px;
+        }
+
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .navigation a {
+            padding: 10px 11px;
+            border-radius: 6px;
+            color: #aeb9ca;
+            text-decoration: none;
+            font-size: 11px;
+            transition: 0.15s;
+        }
+
+        .navigation a:hover {
+            background: #1e293b;
+            color: #ffffff;
+        }
+
+        .navigation a.active {
+            background: #1d4ed8;
+            color: #ffffff;
+        }
+
+        .system-status {
+            margin-top: 45px;
+            padding: 12px 8px;
+            border-top: 1px solid #273244;
+            color: #86efac;
+            font-size: 9px;
+        }
+
+
+        /* =========================================================
+           ОСНОВНОЙ КОНТЕНТ
+           ========================================================= */
+
+        .content {
+            flex: 1;
+            max-width: 1500px;
+            padding: 25px 32px;
+        }
+
+        .top-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 17px;
+        }
+
+        .eyebrow {
+            margin: 0 0 5px;
+            color: #64748b;
+            font-size: 9px;
+            letter-spacing: 2px;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: 25px;
+            line-height: 1.2;
+        }
+
+        .page-description {
+            margin: 6px 0 0;
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .avatar {
+            width: 39px;
+            height: 39px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .user-name {
+            margin: 0;
+            font-size: 10px;
+        }
+
+        .user-role {
+            margin: 3px 0 0;
+            color: #64748b;
+            font-size: 8px;
+        }
+
+
+        /* =========================================================
+           БАННЕР УГРОЗЫ
+           ========================================================= */
+
+        .threat-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            padding: 18px 21px;
+            border-radius: 11px;
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        .threat-tag {
+            display: inline-block;
+            padding: 4px 7px;
+            border-radius: 4px;
+            background: #2563eb;
+            font-size: 8px;
+            font-weight: 700;
+        }
+
+        .threat-title {
+            margin: 9px 0 4px;
+            font-size: 16px;
+        }
+
+        .threat-description {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 9px;
+        }
+
+        .threat-status {
+            color: #86efac;
+            font-size: 9px;
+            white-space: nowrap;
+        }
+
+
+        /* =========================================================
+           СТАТИСТИКА
+           ========================================================= */
+
+        .statistics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .stat-card {
+            padding: 14px;
+            border: 1px solid #e4e8ef;
+            border-radius: 9px;
+            background: #ffffff;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 9px;
+        }
+
+        .stat-value {
+            display: block;
+            margin: 6px 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .stat-note {
+            font-size: 8px;
+        }
+
+        .blue {
+            color: #2563eb;
+        }
+
+        .green {
+            color: #15803d;
+        }
+
+        .red {
+            color: #b91c1c;
+        }
+
+        .orange {
+            color: #b45309;
+        }
+
+
+        /* =========================================================
+           ОБЩИЕ КАРТОЧКИ
+           ========================================================= */
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 12px;
+        }
+
+        .card {
+            margin-bottom: 13px;
+            padding: 15px;
+            border: 1px solid #e4e8ef;
+            border-radius: 9px;
+            background: #ffffff;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            margin: 0;
+            font-size: 12px;
+        }
+
+        .card-description {
+            margin: 3px 0 0;
+            color: #64748b;
+            font-size: 8px;
+        }
+
+        .period {
+            padding: 5px 7px;
+            border: 1px solid #dbe1ea;
+            border-radius: 4px;
+            color: #64748b;
+            background: #ffffff;
+            font-size: 8px;
+        }
+
+
+        /* =========================================================
+           ГРАФИК
+           ========================================================= */
+
+        .chart {
+            height: 150px;
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 10px 4px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .bar {
+            position: relative;
+            flex: 1;
+            min-width: 10px;
+            border-radius: 3px 3px 0 0;
+            background: #60a5fa;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .bar:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .bar.danger {
+            background: #f87171;
+        }
+
+        .bar.danger:hover {
+            background: #dc2626;
+        }
+
+        .bar.selected {
+            outline: 2px solid #1d4ed8;
+            outline-offset: 2px;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 15px;
+            margin-top: 9px;
+            color: #64748b;
+            font-size: 8px;
+        }
+
+        .legend-item {
+            cursor: pointer;
+        }
+
+        .legend-marker {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin-right: 4px;
+            border-radius: 50%;
+            background: #60a5fa;
+        }
+
+        .legend-marker.danger {
+            background: #f87171;
+        }
+
+        .chart-info {
+            min-height: 16px;
+            margin-top: 9px;
+            color: #334155;
+            font-size: 9px;
+        }
+
+
+        /* =========================================================
+           КРУГОВАЯ ДИАГРАММА
+           ========================================================= */
+
+        .decision-layout {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-top: 15px;
+        }
+
+        .donut {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background:
+                conic-gradient(
+                    #22c55e 0% 90%,
+                    #f59e0b 90% 93%,
+                    #ef4444 93% 100%
+                );
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .donut:hover {
+            transform: scale(1.03);
+        }
+
+        .donut.selected {
+            outline: 3px solid #2563eb;
+            outline-offset: 3px;
+        }
+
+        .donut::after {
+            content: "";
+            position: absolute;
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            background: #ffffff;
+        }
+
+        .donut-center {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .donut-value {
+            display: block;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .donut-label {
+            color: #64748b;
+            font-size: 8px;
+        }
+
+        .decision-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .decision-item {
+            cursor: pointer;
+            font-size: 9px;
+            transition: 0.15s;
+        }
+
+        .decision-item:hover {
+            transform: translateX(2px);
+        }
+
+        .decision-item.selected {
+            font-weight: 700;
+        }
+
+        .decision-info {
+            min-height: 16px;
+            margin-top: 10px;
+            color: #475569;
+            font-size: 9px;
+        }
+
+
+        /* =========================================================
+           ИНФОРМАЦИОННЫЙ БЛОК
+           ========================================================= */
+
+        .note {
+            margin-top: 11px;
+            padding: 9px;
+            border-left: 3px solid #2563eb;
+            background: #f8fafc;
+            color: #475569;
+            font-size: 8px;
+            line-height: 1.45;
+        }
+
+
+        /* =========================================================
+           ЖУРНАЛ СОБЫТИЙ
+           ========================================================= */
+
+        .events-table {
+            margin-top: 10px;
+        }
+
+        .event-row {
+            display: grid;
+            grid-template-columns: 60px 1.5fr 1.2fr 100px;
+            gap: 8px;
+            align-items: center;
+            padding: 9px 0;
+            border-top: 1px solid #edf0f5;
+            font-size: 9px;
+        }
+
+        .event-row:first-child {
+            border-top: none;
+        }
+
+        .event-source {
+            color: #64748b;
+        }
+
+        .event-status {
+            width: max-content;
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-size: 7px;
+            font-weight: 700;
+        }
+
+        .event-status.allow {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .event-status.block {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .event-status.quarantine {
+            background: #fef3c7;
+            color: #a16207;
+        }
+
+
+        /* =========================================================
+           МИКРОСЕРВИСЫ
+           ========================================================= */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .service {
+            min-height: 82px;
+            padding: 10px;
+            border: 1px solid #edf0f5;
+            border-radius: 7px;
+            background: #fafbfc;
+        }
+
+        .service-status {
+            color: #15803d;
+            font-size: 7px;
+            font-weight: 700;
+        }
+
+        .service-name {
+            display: block;
+            margin-top: 8px;
+            font-size: 8px;
+            line-height: 1.35;
+        }
+
+        .service-description {
+            margin: 5px 0 0;
+            color: #64748b;
+            font-size: 7px;
+            line-height: 1.35;
+        }
+
+
+        /* =========================================================
+           АРХИТЕКТУРА
+           ========================================================= */
+
+        .architecture {
+            display: grid;
+            grid-template-columns: 1fr 25px 1fr 25px 1fr;
+            align-items: center;
+            gap: 6px;
+            margin-top: 13px;
+        }
+
+        .architecture-component {
+            min-height: 75px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px;
+            border: 1px solid #dce2ea;
+            border-radius: 7px;
+            background: #fafbfc;
+            text-align: center;
+        }
+
+        .architecture-component strong {
+            font-size: 9px;
+        }
+
+        .architecture-component span {
+            margin-top: 5px;
+            color: #64748b;
+            font-size: 7px;
+        }
+
+        .architecture-arrow {
+            color: #2563eb;
+            font-size: 18px;
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           КОНТРОЛИ ЗАЩИТЫ
+           ========================================================= */
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .control {
+            padding: 11px;
+            border: 1px solid #edf0f5;
+            border-radius: 7px;
+            background: #fafbfc;
+        }
+
+        .control-title {
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .control-description {
+            min-height: 34px;
+            margin: 6px 0;
+            color: #64748b;
+            font-size: 8px;
+            line-height: 1.4;
+        }
+
+        .control-status {
+            color: #15803d;
+            font-size: 7px;
+        }
+
+
+        /* =========================================================
+           СОСТОЯНИЕ СИСТЕМЫ
+           ========================================================= */
+
+        .system-components {
+            margin-top: 10px;
+        }
+
+        .system-component {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-top: 1px solid #edf0f5;
+            font-size: 8px;
+        }
+
+        .system-component:first-child {
+            border-top: none;
+        }
+
+        .system-component-status {
+            color: #15803d;
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           ПОДВАЛ
+           ========================================================= */
+
+        .footer {
+            padding: 4px 0 18px;
+            color: #94a3b8;
+            font-size: 7px;
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           АДАПТИВНОСТЬ
+           ========================================================= */
+
+        @media (max-width: 1050px) {
+
+            .statistics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                padding: 18px;
+            }
+
+            .top-header {
+                align-items: flex-start;
+            }
+
+            .user-profile {
+                display: none;
+            }
+
+            .services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .controls {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- =========================================================
+         БОКОВАЯ НАВИГАЦИЯ
+         ========================================================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Щ
+        </div>
+
+        <div class="brand">
+            <h2 class="brand-title">
+                Mail Security
+            </h2>
+
+            <p class="brand-subtitle">
+                Центр защиты информации
+            </p>
+        </div>
+
+        <nav class="navigation">
+
+            <a href="#" class="active">
+                Обзор
+            </a>
+
+            <a href="#events">
+                События безопасности
+            </a>
+
+            <a href="#services">
+                Сервисы защиты
+            </a>
+
+            <a href="#architecture">
+                Архитектура
+            </a>
+
+            <a href="#rules">
+                Правила анализа
+            </a>
+
+        </nav>
+
+        <div class="system-status">
+            ● Все системы работают
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         ОСНОВНАЯ ОБЛАСТЬ
+         ========================================================= -->
+
+    <main class="content">
+
+
+        <!-- =====================================================
+             ЗАГОЛОВОК
+             ===================================================== -->
+
+        <header class="top-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    ЦЕНТР БЕЗОПАСНОСТИ
+                </p>
+
+                <h1 class="page-title">
+                    Контроль распространения почтовых червей
+                </h1>
+
+                <p class="page-description">
+                    Демонстрационный компонент паттерна безопасности
+                </p>
+
+            </div>
+
+
+            <div class="user-profile">
+
+                <div class="avatar">
+                    ДС
+                </div>
+
+                <div>
+
+                    <p class="user-name">
+                        Администратор
+                    </p>
+
+                    <p class="user-role">
+                        Учебный стенд Django
+                    </p>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             БАННЕР УГРОЗЫ
+             ===================================================== -->
+
+        <section class="threat-banner">
+
+            <div>
+
+                <span class="threat-tag">
+                    АКТИВНЫЙ ПАТТЕРН
+                </span>
+
+                <h2 class="threat-title">
+                    УБИ.172 — Угроза распространения «почтовых червей»
+                </h2>
+
+                <p class="threat-description">
+                    Анализ сообщения → принятие решения →
+                    блокировка или разрешение → контроль распространения.
+                </p>
+
+            </div>
+
+            <div class="threat-status">
+                ● Контролируется
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ОСНОВНАЯ СТАТИСТИКА
+             ===================================================== -->
+
+        <section class="statistics">
+
+            <article class="stat-card">
+
+                <span class="stat-label">
+                    Проверено сообщений
+                </span>
+
+                <strong class="stat-value">
+                    1 000
+                </strong>
+
+                <span class="stat-note blue">
+                    +12% за сутки
+                </span>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <span class="stat-label">
+                    Разрешено
+                </span>
+
+                <strong class="stat-value">
+                    930
+                </strong>
+
+                <span class="stat-note green">
+                    93% от потока
+                </span>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <span class="stat-label">
+                    Заблокировано
+                </span>
+
+                <strong class="stat-value">
+                    70
+                </strong>
+
+                <span class="stat-note red">
+                    7% от потока
+                </span>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <span class="stat-label">
+                    Событий за сутки
+                </span>
+
+                <strong class="stat-value">
+                    1,78
+                </strong>
+
+                <span class="stat-note orange">
+                    среднее значение
+                </span>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================================
+             ГРАФИКИ
+             ===================================================== -->
+
+        <section class="main-grid">
+
+
+            <!-- ГРАФИК ПРОВЕРОК -->
+
+            <article class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3 class="card-title">
+                            Результаты проверки
+                        </h3>
+
+                        <p class="card-description">
+                            Количество обработанных сообщений
+                        </p>
+
+                    </div>
+
+                    <span class="period">
+                        24 часа
+                    </span>
+
+                </div>
+
+
+                <div class="chart" id="securityChart">
+
+                    <div
+                        class="bar"
+                        data-time="10:00"
+                        data-value="54"
+                        style="height: 54%;"
+                    ></div>
+
+                    <div
+                        class="bar"
+                        data-time="11:00"
+                        data-value="72"
+                        style="height: 72%;"
+                    ></div>
+
+                    <div
+                        class="bar"
+                        data-time="12:00"
+                        data-value="61"
+                        style="height: 61%;"
+                    ></div>
+
+                    <div
+                        class="bar danger"
+                        data-time="13:00"
+                        data-value="35"
+                        style="height: 35%;"
+                    ></div>
+
+                    <div
+                        class="bar"
+                        data-time="14:00"
+                        data-value="78"
+                        style="height: 78%;"
+                    ></div>
+
+                    <div
+                        class="bar"
+                        data-time="15:00"
+                        data-value="64"
+                        style="height: 64%;"
+                    ></div>
+
+                    <div
+                        class="bar danger"
+                        data-time="16:00"
+                        data-value="28"
+                        style="height: 28%;"
+                    ></div>
+
+                    <div
+                        class="bar"
+                        data-time="17:00"
+                        data-value="88"
+                        style="height: 88%;"
+                    ></div>
+
+                    <div
+                        class="bar"
+                        data-time="18:00"
+                        data-value="70"
+                        style="height: 70%;"
+                    ></div>
+
+                    <div
+                        class="bar danger"
+                        data-time="19:00"
+                        data-value="42"
+                        style="height: 42%;"
+                    ></div>
+
+                </div>
+
+
+                <div class="chart-legend">
+
+                    <span
+                        class="legend-item"
+                        id="showAll"
+                    >
+                        <i class="legend-marker"></i>
+                        Проверено
+                    </span>
+
+                    <span
+                        class="legend-item"
+                        id="showBlocked"
+                    >
+                        <i class="legend-marker danger"></i>
+                        Заблокировано
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="chart-info"
+                    id="chartInfo"
+                >
+                    Нажмите на столбец,
+                    чтобы посмотреть значение.
+                </div>
+
+            </article>
+
+
+            <!-- РАСПРЕДЕЛЕНИЕ РЕШЕНИЙ -->
+
+            <article class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3 class="card-title">
+                            Распределение решений
+                        </h3>
+
+                        <p class="card-description">
+                            Результаты анализа сообщений
+                        </p>
+
+                    </div>
+
+                    <span class="period">
+                        1 000 сообщений
+                    </span>
+
+                </div>
+
+
+                <div class="decision-layout">
+
+                    <div
+                        class="donut"
+                        id="decisionChart"
+                    >
+
+                        <div class="donut-center">
+
+                            <span class="donut-value">
+                                1 000
+                            </span>
+
+                            <span class="donut-label">
+                                сообщений
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="decision-list">
+
+                        <div
+                            class="decision-item green"
+                            data-decision="ALLOW"
+                        >
+                            ● 90% ALLOW
+                        </div>
+
+                        <div
+                            class="decision-item orange"
+                            data-decision="QUARANTINE"
+                        >
+                            ● 3% QUARANTINE
+                        </div>
+
+                        <div
+                            class="decision-item red"
+                            data-decision="BLOCK"
+                        >
+                            ● 7% BLOCK
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="decision-info"
+                    id="decisionInfo"
+                >
+                    Нажмите на решение,
+                    чтобы увидеть его назначение.
+                </div>
+
+
+                <div class="note">
+
+                    Заблокированные или подозрительные
+                    сообщения могут направляться в карантин
+                    для дополнительного анализа.
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================================
+             ЖУРНАЛ СОБЫТИЙ
+             ===================================================== -->
+
+        <section
+            class="card"
+            id="events"
+        >
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3 class="card-title">
+                        Последние события безопасности
+                    </h3>
+
+                    <p class="card-description">
+                        Журнал обнаружения и реагирования
+                    </p>
+
+                </div>
+
+                <span class="period">
+                    Журнал
+                </span>
+
+            </div>
+
+
+            <div class="events-table">
+
+
+                <div class="event-row">
+
+                    <span>
+                        20:31
+                    </span>
+
+                    <span>
+                        Вредоносная ссылка
+                    </span>
+
+                    <span class="event-source">
+                        external@example.com
+                    </span>
+
+                    <b class="event-status block">
+                        BLOCK
+                    </b>
+
+                </div>
+
+
+                <div class="event-row">
+
+                    <span>
+                        20:18
+                    </span>
+
+                    <span>
+                        Подозрительное вложение
+                    </span>
+
+                    <span class="event-source">
+                        sales@example.com
+                    </span>
+
+                    <b class="event-status quarantine">
+                        QUARANTINE
+                    </b>
+
+                </div>
+
+
+                <div class="event-row">
+
+                    <span>
+                        19:54
+                    </span>
+
+                    <span>
+                        Автоматическая рассылка
+                    </span>
+
+                    <span class="event-source">
+                        user@company.ru
+                    </span>
+
+                    <b class="event-status block">
+                        BLOCK
+                    </b>
+
+                </div>
+
+
+                <div class="event-row">
+
+                    <span>
+                        19:21
+                    </span>
+
+                    <span>
+                        Обычное сообщение
+                    </span>
+
+                    <span class="event-source">
+                        partner@example.com
+                    </span>
+
+                    <b class="event-status allow">
+                        ALLOW
+                    </b>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             МИКРОСЕРВИСЫ
+             ===================================================== -->
+
+        <section
+            class="card"
+            id="services"
+        >
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3 class="card-title">
+                        Сервисы паттерна
+                    </h3>
+
+                    <p class="card-description">
+                        Компоненты микросервисной архитектуры
+                    </p>
+
+                </div>
+
+                <span class="period">
+                    5 сервисов
+                </span>
+
+            </div>
+
+
+            <div class="services">
+
+
+                <article class="service">
+
+                    <span class="service-status">
+                        ● РАБОТАЕТ
+                    </span>
+
+                    <strong class="service-name">
+                        Сервис обработки сообщений
+                    </strong>
+
+                    <p class="service-description">
+                        Получение сообщений,
+                        выделение вложений и URL.
+                    </p>
+
+                </article>
+
+
+                <article class="service">
+
+                    <span class="service-status">
+                        ● РАБОТАЕТ
+                    </span>
+
+                    <strong class="service-name">
+                        Сервис анализа контента
+                    </strong>
+
+                    <p class="service-description">
+                        Анализ вложений и ссылок,
+                        формирование результатов анализа.
+                    </p>
+
+                </article>
+
+
+                <article class="service">
+
+                    <span class="service-status">
+                        ● РАБОТАЕТ
+                    </span>
+
+                    <strong class="service-name">
+                        Сервис принятия решений
+                    </strong>
+
+                    <p class="service-description">
+                        Применение правил
+                        и выбор ALLOW / BLOCK.
+                    </p>
+
+                </article>
+
+
+                <article class="service">
+
+                    <span class="service-status">
+                        ● РАБОТАЕТ
+                    </span>
+
+                    <strong class="service-name">
+                        Сервис событий безопасности
+                    </strong>
+
+                    <p class="service-description">
+                        Карантин, журналирование,
+                        уведомления и статистика.
+                    </p>
+
+                </article>
+
+
+                <article class="service">
+
+                    <span class="service-status">
+                        ● РАБОТАЕТ
+                    </span>
+
+                    <strong class="service-name">
+                        Контроль выполнения
+                    </strong>
+
+                    <p class="service-description">
+                        Контроль выполнения
+                        и дальнейшего распространения.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             АРХИТЕКТУРА ПАТТЕРНА
+             ===================================================== -->
+
+        <section
+            class="card"
+            id="architecture"
+        >
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3 class="card-title">
+                        Архитектура паттерна
+                    </h3>
+
+                    <p class="card-description">
+                        Основной поток обработки сообщения
+                    </p>
+
+                </div>
+
+                <span class="period">
+                    Deployment
+                </span>
+
+            </div>
+
+
+            <div class="architecture">
+
+
+                <div class="architecture-component">
+
+                    <strong>
+                        Почтовый сервер
+                    </strong>
+
+                    <span>
+                        Получение сообщения
+                    </span>
+
+                </div>
+
+
+                <div class="architecture-arrow">
+                    →
+                </div>
+
+
+                <div class="architecture-component">
+
+                    <strong>
+                        Анализ контента
+                    </strong>
+
+                    <span>
+                        Вложения и URL
+                    </span>
+
+                </div>
+
+
+                <div class="architecture-arrow">
+                    →
+                </div>
+
+
+                <div class="architecture-component">
+
+                    <strong>
+                        Принятие решения
+                    </strong>
+
+                    <span>
+                        ALLOW / BLOCK
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="note">
+
+                <strong>
+                    Основной механизм защиты:
+                </strong>
+
+                содержимое сообщения анализируется
+                сервисом анализа контента. На основании
+                результатов применяются правила принятия
+                решения, после чего сообщение разрешается,
+                блокируется или помещается в карантин.
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             КОНТРОЛИ ЗАЩИТЫ
+             ===================================================== -->
+
+        <section
+            class="card"
+            id="rules"
+        >
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3 class="card-title">
+                        Контроли защиты
+                    </h3>
+
+                    <p class="card-description">
+                        Основные механизмы противодействия УБИ.172
+                    </p>
+
+                </div>
+
+                <span class="period">
+                    УБИ.172
+                </span>
+
+            </div>
+
+
+            <div class="controls">
+
+
+                <article class="control">
+
+                    <strong class="control-title">
+                        Анализ вложений
+                    </strong>
+
+                    <p class="control-description">
+                        Проверка содержимого
+                        вложений на признаки
+                        вредоносной активности.
+                    </p>
+
+                    <span class="control-status">
+                        ● Активен
+                    </span>
+
+                </article>
+
+
+                <article class="control">
+
+                    <strong class="control-title">
+                        Анализ URL
+                    </strong>
+
+                    <p class="control-description">
+                        Проверка внешних адресов
+                        и ресурсов до перехода
+                        пользователя.
+                    </p>
+
+                    <span class="control-status">
+                        ● Активен
+                    </span>
+
+                </article>
+
+
+                <article class="control">
+
+                    <strong class="control-title">
+                        Принятие решения
+                    </strong>
+
+                    <p class="control-description">
+                        Формирование решений
+                        ALLOW, BLOCK или QUARANTINE.
+                    </p>
+
+                    <span class="control-status">
+                        ● Активен
+                    </span>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             СОСТОЯНИЕ КОМПОНЕНТОВ
+             ===================================================== -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3 class="card-title">
+                        Состояние компонентов
+                    </h3>
+
+                    <p class="card-description">
+                        Текущее состояние элементов системы
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="system-components">
+
+
+                <div class="system-component">
+
+                    <span>
+                        Почтовая инфраструктура
+                    </span>
+
+                    <span class="system-component-status">
+                        ● Доступна
+                    </span>
+
+                </div>
+
+
+                <div class="system-component">
+
+                    <span>
+                        Сервис анализа контента
+                    </span>
+
+                    <span class="system-component-status">
+                        ● Доступен
+                    </span>
+
+                </div>
+
+
+                <div class="system-component">
+
+                    <span>
+                        Сервис принятия решений
+                    </span>
+
+                    <span class="system-component-status">
+                        ● Доступен
+                    </span>
+
+                </div>
+
+
+                <div class="system-component">
+
+                    <span>
+                        Хранилище карантина
+                    </span>
+
+                    <span class="system-component-status">
+                        ● Доступно
+                    </span>
+
+                </div>
+
+
+                <div class="system-component">
+
+                    <span>
+                        Журнал событий безопасности
+                    </span>
+
+                    <span class="system-component-status">
+                        ● Доступен
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ПОДВАЛ
+             ===================================================== -->
+
+        <footer class="footer">
+
+            Учебный прототип на Django
+            ·
+            Паттерн защиты УБИ.172
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<!-- =============================================================
+     JAVASCRIPT
+     ============================================================= -->
+
+<script>
+
+
+    /* =========================================================
+       ИНТЕРАКТИВНЫЙ ГРАФИК
+       ========================================================= */
+
+    const bars = document.querySelectorAll(".bar");
+
+    const chartInfo =
+        document.getElementById("chartInfo");
+
+
+    bars.forEach(function (bar) {
+
+        bar.addEventListener("click", function () {
+
+            bars.forEach(function (item) {
+
+                item.classList.remove("selected");
+
+            });
+
+
+            bar.classList.add("selected");
+
+
+            const time =
+                bar.dataset.time;
+
+            const value =
+                bar.dataset.value;
+
+
+            const isBlocked =
+                bar.classList.contains("danger");
+
+
+            const eventType =
+                isBlocked
+                    ? "Заблокировано"
+                    : "Проверено";
+
+
+            chartInfo.innerHTML =
+                "<b>" +
+                time +
+                "</b> · " +
+                eventType +
+                " · значение: <b>" +
+                value +
+                "%</b>";
+
+        });
+
+    });
+
+
+    /* =========================================================
+       ПОКАЗАТЬ ВСЕ ДАННЫЕ
+       ========================================================= */
+
+    const showAll =
+        document.getElementById("showAll");
+
+
+    showAll.addEventListener("click", function () {
+
+        bars.forEach(function (bar) {
+
+            bar.style.opacity = "1";
+
+        });
+
+
+        chartInfo.textContent =
+            "Показаны все результаты проверки.";
+
+    });
+
+
+    /* =========================================================
+       ПОКАЗАТЬ ЗАБЛОКИРОВАННЫЕ
+       ========================================================= */
+
+    const showBlocked =
+        document.getElementById("showBlocked");
+
+
+    showBlocked.addEventListener("click", function () {
+
+        bars.forEach(function (bar) {
+
+            if (
+                bar.classList.contains("danger")
+            ) {
+
+                bar.style.opacity = "1";
+
+            } else {
+
+                bar.style.opacity = "0.2";
+
+            }
+
+        });
+
+
+        chartInfo.textContent =
+            "Показаны только заблокированные события.";
+
+    });
+
+
+    /* =========================================================
+       РЕШЕНИЯ ALLOW / BLOCK / QUARANTINE
+       ========================================================= */
+
+    const decisionItems =
+        document.querySelectorAll(
+            ".decision-item"
+        );
+
+
+    const decisionInfo =
+        document.getElementById(
+            "decisionInfo"
+        );
+
+
+    const decisionChart =
+        document.getElementById(
+            "decisionChart"
+        );
+
+
+    decisionItems.forEach(function (item) {
+
+        item.addEventListener(
+            "click",
+            function () {
+
+
+                decisionItems.forEach(
+                    function (element) {
+
+                        element.classList.remove(
+                            "selected"
+                        );
+
+                    }
+                );
+
+
+                item.classList.add(
+                    "selected"
+                );
+
+
+                decisionChart.classList.add(
+                    "selected"
+                );
+
+
+                const decision =
+                    item.dataset.decision;
+
+
+                if (
+                    decision === "ALLOW"
+                ) {
+
+                    decisionInfo.textContent =
+                        "ALLOW — сообщение "
+                        + "разрешено к дальнейшей "
+                        + "доставке.";
+
+                }
+
+
+                if (
+                    decision === "BLOCK"
+                ) {
+
+                    decisionInfo.textContent =
+                        "BLOCK — сообщение "
+                        + "заблокировано механизмом "
+                        + "защиты.";
+
+                }
+
+
+                if (
+                    decision === "QUARANTINE"
+                ) {
+
+                    decisionInfo.textContent =
+                        "QUARANTINE — объект "
+                        + "изолирован для дополнительного "
+                        + "анализа.";
+
+                }
+
+            }
+        );
+
+    });
+
+
+    /* =========================================================
+       СБРОС ВЫБОРА КРУГОВОЙ ДИАГРАММЫ
+       ========================================================= */
+
+    decisionChart.addEventListener(
+        "click",
+        function () {
+
+            decisionItems.forEach(
+                function (item) {
+
+                    item.classList.remove(
+                        "selected"
+                    );
+
+                }
+            );
+
+
+            decisionChart.classList.remove(
+                "selected"
+            );
+
+
+            decisionInfo.textContent =
+                "Нажмите на решение, "
+                + "чтобы увидеть его назначение.";
+
+        }
+    );
+
+
+</script>
+
+</body>
+
+</html>
